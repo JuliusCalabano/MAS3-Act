@@ -1,0 +1,2558 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Research Manuscript Formatting Laboratory</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+
+        .sidebar {
+            width: 270px;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            margin-left: 270px;
+        }
+
+        .task-page {
+            display: none;
+        }
+
+        .task-page.active {
+            display: block;
+        }
+
+        .nav-task {
+            cursor: pointer;
+        }
+
+        .nav-task.active {
+            background: #0d6efd !important;
+            color: white !important;
+        }
+
+        .nav-task.completed {
+            color: #75b798;
+        }
+
+        .task-number {
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero {
+            background: linear-gradient(135deg,
+                    #0d6efd,
+                    #084298);
+        }
+
+        .word-path {
+            background: #212529;
+            color: #f8f9fa;
+            font-family: monospace;
+        }
+
+        .apa-table th {
+            border-top: 2px solid #000;
+            border-bottom: 1px solid #000;
+        }
+
+        .apa-table tbody tr:last-child td {
+            border-bottom: 2px solid #000;
+        }
+
+        @media (max-width: 991px) {
+
+            .sidebar {
+                position: fixed;
+                left: -270px;
+                z-index: 1050;
+                transition: 0.3s;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+    <aside class="sidebar position-fixed top-0 bg-dark text-white p-3" id="sidebar">
+
+        <!-- LOGO -->
+
+        <div class="d-flex align-items-center gap-3 mb-4">
+
+            <div class="bg-primary rounded p-2 fs-4">
+                <i class="bi bi-journal-text"></i>
+            </div>
+
+            <div>
+                <h6 class="mb-0">
+                    Formatting Lab
+                </h6>
+
+                <small class="text-secondary">
+                    Research Manuscript
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- ACTIVITY NAVIGATION -->
+
+        <small class="text-secondary text-uppercase">
+            Activity
+        </small>
+
+        <div class="nav flex-column gap-1 mt-2">
+
+            <!-- OVERVIEW -->
+
+            <button class="nav-task nav-link text-start text-light active" onclick="showPage('overview', this)">
+
+                <i class="bi bi-house me-2"></i>
+
+                Activity Overview
+
+            </button>
+
+
+            <!-- TASK 1 -->
+
+            <button class="nav-task nav-link text-start text-light" onclick="showPage('task1', this)">
+
+                <span class="task-number rounded-circle border me-2">
+                    1
+                </span>
+
+                Page Setup
+
+            </button>
+
+
+            <!-- TASK 2 -->
+
+            <button class="nav-task nav-link text-start text-light" onclick="showPage('task2', this)">
+
+                <span class="task-number rounded-circle border me-2">
+                    2
+                </span>
+
+                Paragraph Formatting
+
+            </button>
+
+
+            <!-- TASK 3 -->
+
+            <button class="nav-task nav-link text-start text-light" onclick="showPage('task3', this)">
+
+                <span class="task-number rounded-circle border me-2">
+                    3
+                </span>
+
+                Tables & APA 7
+
+            </button>
+
+
+            <!-- TASK 4 -->
+
+            <button class="nav-task nav-link text-start text-light" onclick="showPage('task4', this)">
+
+                <span class="task-number rounded-circle border me-2">
+                    4
+                </span>
+
+                Headers
+
+            </button>
+
+
+            <!-- TASK 5 -->
+
+            <button class="nav-task nav-link text-start text-light" onclick="showPage('task5', this)">
+
+                <span class="task-number rounded-circle border me-2">
+                    5
+                </span>
+
+                Page Numbering
+
+            </button>
+
+
+            <!-- TASK 6 -->
+
+            <button class="nav-task nav-link text-start text-light" onclick="showPage('task6', this)">
+
+                <span class="task-number rounded-circle border me-2">
+                    6
+                </span>
+
+                Images & Wrapping
+
+            </button>
+
+
+            <!-- TASK 7 -->
+
+            <button class="nav-task nav-link text-start text-light" onclick="showPage('task7', this)">
+
+                <span class="task-number rounded-circle border me-2">
+                    7
+                </span>
+
+                Navigation Pane
+
+            </button>
+
+        </div>
+
+
+        <hr class="border-secondary">
+
+
+        <small class="text-secondary text-uppercase">
+            Completion
+        </small>
+
+
+        <button class="nav-task nav-link text-start text-light mt-2" onclick="showPage('checklist', this)">
+
+            <i class="bi bi-check2-square me-2"></i>
+
+            Final Checklist
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <nav class="navbar bg-white border-bottom sticky-top">
+
+            <div class="container-fluid">
+
+                <button class="btn btn-outline-primary d-lg-none" onclick="toggleSidebar()">
+
+                    <i class="bi bi-list"></i>
+
+                </button>
+
+
+                <span class="navbar-brand fs-6 fw-semibold">
+
+                    Research Manuscript Formatting Laboratory
+
+                </span>
+
+
+                <div class="d-flex align-items-center gap-2">
+
+                    <div class="progress" style="width:150px;height:8px;">
+
+                        <div class="progress-bar" id="progressFill" style="width:0%"></div>
+
+                    </div>
+
+                    <small class="text-secondary" id="progressText">
+                        0 / 7
+                    </small>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+
+        <!-- PAGE CONTENT -->
+
+        <div class="container-fluid p-3 p-md-4 p-lg-5">
+
+            <div class="container-fluid">
+
+
+
+                <!-- =================================================
+                 OVERVIEW
+            ================================================= -->
+
+                <section id="overview" class="task-page active">
+
+                    <!-- HERO -->
+
+                    <div class="hero text-white rounded-4 p-4 p-md-5 mb-4">
+
+                        <small class="text-uppercase opacity-75">
+                            Microsoft Word Practical Activity
+                        </small>
+
+                        <h1 class="display-6 fw-bold mt-2">
+                            Research Manuscript
+                            <br>
+                            Formatting Laboratory
+                        </h1>
+
+                        <p class="lead mt-3 mb-0">
+                            Learn how to properly format a research
+                            manuscript using Microsoft Word through
+                            seven practical activities.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- INTRODUCTION -->
+
+                    <div class="mb-4">
+
+                        <h2 class="h4 fw-bold">
+                            Activity Overview
+                        </h2>
+
+                        <p class="text-secondary">
+                            Download the provided research manuscript
+                            first. You will use the same Word document
+                            throughout Tasks 1–7.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- DOWNLOAD WORD DOCUMENT -->
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-md">
+
+                                    <div class="d-flex gap-3">
+
+                                        <div class="bg-primary-subtle text-primary
+                                        rounded p-3 fs-3">
+
+                                            <i class="bi bi-file-earmark-word"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <h5 class="mb-1">
+                                                Research Manuscript Activity File
+                                            </h5>
+
+                                            <p class="text-secondary mb-0">
+                                                Download the Word document
+                                                that you will format.
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-auto mt-3 mt-md-0">
+
+                                    <a href="research-manuscript.docx" download class="btn btn-primary">
+
+                                        <i class="bi bi-download me-1"></i>
+
+                                        Download Word File
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- DOWNLOAD IMAGE -->
+
+                    <div class="card border-0 shadow-sm mb-4">
+
+                        <div class="card-body">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-md">
+
+                                    <div class="d-flex gap-3">
+
+                                        <div class="bg-primary-subtle text-primary
+                                        rounded p-3 fs-3">
+
+                                            <i class="bi bi-image"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <h5 class="mb-1">
+                                                Required Research Image
+                                            </h5>
+
+                                            <p class="text-secondary mb-0">
+                                                Download this image for Task 6.
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-auto mt-3 mt-md-0">
+
+                                    <a href="research-image.jpg" download class="btn btn-outline-primary">
+
+                                        <i class="bi bi-download me-1"></i>
+
+                                        Download Image
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TASK CARDS -->
+
+                    <div class="row g-3 mb-4">
+
+                        <div class="col-md-4">
+
+                            <div class="card h-100 border-0 shadow-sm">
+
+                                <div class="card-body">
+
+                                    <i class="bi bi-file-earmark-text
+                                    fs-2 text-primary"></i>
+
+                                    <h5 class="mt-3">
+                                        Document Formatting
+                                    </h5>
+
+                                    <p class="text-secondary small">
+                                        Configure page settings,
+                                        paragraphs, headers, and
+                                        page numbers.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="card h-100 border-0 shadow-sm">
+
+                                <div class="card-body">
+
+                                    <i class="bi bi-table
+                                    fs-2 text-primary"></i>
+
+                                    <h5 class="mt-3">
+                                        APA 7 Formatting
+                                    </h5>
+
+                                    <p class="text-secondary small">
+                                        Convert raw information into
+                                        a properly formatted research
+                                        table.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="card h-100 border-0 shadow-sm">
+
+                                <div class="card-body">
+
+                                    <i class="bi bi-compass
+                                    fs-2 text-primary"></i>
+
+                                    <h5 class="mt-3">
+                                        Document Navigation
+                                    </h5>
+
+                                    <p class="text-secondary small">
+                                        Apply heading styles and use
+                                        the Navigation Pane.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- LEARNING OBJECTIVES -->
+
+                    <div class="card border-0 shadow-sm">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="mb-3">
+                                <i class="bi bi-bullseye text-primary me-2"></i>
+                                Learning Objectives
+                            </h4>
+
+                            <ol class="list-group list-group-numbered">
+
+                                <li class="list-group-item border-0">
+                                    Configure Microsoft Word page settings.
+                                </li>
+
+                                <li class="list-group-item border-0">
+                                    Apply consistent paragraph and text formatting.
+                                </li>
+
+                                <li class="list-group-item border-0">
+                                    Create APA 7 formatted research tables.
+                                </li>
+
+                                <li class="list-group-item border-0">
+                                    Insert and format headers and page numbers.
+                                </li>
+
+                                <li class="list-group-item border-0">
+                                    Use section breaks for different numbering formats.
+                                </li>
+
+                                <li class="list-group-item border-0">
+                                    Insert images and apply text wrapping.
+                                </li>
+
+                                <li class="list-group-item border-0">
+                                    Apply heading styles and use the Navigation Pane.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- NEXT -->
+
+                    <div class="d-flex justify-content-end mt-4">
+
+                        <button class="btn btn-primary" onclick="showPageById('task1')">
+
+                            Start Task 1
+
+                            <i class="bi bi-arrow-right ms-1"></i>
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 TASK 1
+            ================================================= -->
+
+                <section id="task1" class="task-page">
+
+                    <div class="d-flex align-items-center gap-3 mb-4">
+
+                        <span class="badge text-bg-primary fs-5 p-3">
+                            01
+                        </span>
+
+                        <div>
+
+                            <h1 class="h3 mb-1">
+                                Page Setup
+                            </h1>
+
+                            <p class="text-secondary mb-0">
+                                Configure the basic document settings.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                <i class="bi bi-bullseye text-primary me-2"></i>
+                                Task Objective
+                            </h4>
+
+                            <p class="text-secondary">
+                                Set the correct page size, orientation,
+                                margins, and other page settings for
+                                the research manuscript.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Instructions
+                            </h4>
+
+                            <ol class="list-group list-group-numbered list-group-flush">
+
+                                <li class="list-group-item">
+                                    Open the downloaded research manuscript
+                                    in Microsoft Word.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Go to the <strong>Layout</strong> tab.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Select the required paper size.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Set the orientation to
+                                    <strong>Portrait</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Set the required margins.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Apply the settings to the document.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Required Page Settings
+                            </h4>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-hover">
+
+                                    <thead class="table-light">
+
+                                        <tr>
+                                            <th>Setting</th>
+                                            <th>Required Format</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Paper Size</td>
+                                            <td>
+                                                Letter / A4 —
+                                                follow instructor requirement
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Orientation</td>
+                                            <td>Portrait</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Margins</td>
+                                            <td>
+                                                Follow the required
+                                                manuscript format
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Page Layout</td>
+                                            <td>Consistent throughout</td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="alert alert-info">
+
+                        <i class="bi bi-lightbulb me-2"></i>
+
+                        <strong>Tip:</strong>
+                        Use
+                        <strong>
+                            Layout → Margins → Custom Margins
+                        </strong>
+                        if the required margins are not available.
+
+                    </div>
+
+
+
+                    <div class="word-path rounded p-3 mb-4">
+
+                        <i class="bi bi-arrow-right-circle me-2"></i>
+
+                        Layout → Margins → Custom Margins
+
+                    </div>
+
+
+
+                    <NavigationButtons previous="overview" next="2"></NavigationButtons>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 TASK 2
+            ================================================= -->
+
+                <section id="task2" class="task-page">
+
+                    <TaskHeader number="02" title="Paragraph Formatting"
+                        subtitle="Apply consistent paragraph and text formatting."></TaskHeader>
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Task Objective
+                            </h4>
+
+                            <p class="text-secondary">
+                                Format the research manuscript so that
+                                paragraphs, text alignment, indentation,
+                                and spacing are consistent.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Instructions
+                            </h4>
+
+                            <ol class="list-group list-group-numbered list-group-flush">
+
+                                <li class="list-group-item">
+                                    Select the body text.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Apply the required font and font size.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Set the correct paragraph alignment.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Apply the required first-line indentation.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Set the required line spacing.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Remove unnecessary paragraph spacing.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Make formatting consistent throughout
+                                    Chapters 1–3.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Formatting Areas to Check
+                            </h4>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-hover">
+
+                                    <thead class="table-light">
+
+                                        <tr>
+                                            <th>Element</th>
+                                            <th>What to Check</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Alignment</td>
+                                            <td>
+                                                Use the required alignment
+                                                consistently.
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Indentation</td>
+                                            <td>
+                                                Apply appropriate
+                                                first-line indentation.
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Line Spacing</td>
+                                            <td>
+                                                Use the required spacing.
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Paragraph Spacing</td>
+                                            <td>
+                                                Remove inconsistent
+                                                before/after spacing.
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Font</td>
+                                            <td>
+                                                Use the required
+                                                academic font.
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="word-path rounded p-3 mb-3">
+
+                        Home → Paragraph →
+                        Line and Paragraph Spacing
+
+                    </div>
+
+
+
+                    <div class="alert alert-info">
+
+                        <i class="bi bi-lightbulb me-2"></i>
+
+                        <strong>Tip:</strong>
+                        Use the Paragraph dialog box for more precise
+                        indentation and spacing settings.
+
+                    </div>
+
+
+
+                    <NavigationButtons previous="1" next="3"></NavigationButtons>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 TASK 3
+            ================================================= -->
+
+                <section id="task3" class="task-page">
+
+                    <TaskHeader number="03" title="Tables & APA 7 Formatting"
+                        subtitle="Convert raw data into an academic research table."></TaskHeader>
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Task Objective
+                            </h4>
+
+                            <p class="text-secondary">
+                                Convert the provided raw data into a
+                                properly organized research table and
+                                apply APA 7 formatting.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Instructions
+                            </h4>
+
+                            <ol class="list-group list-group-numbered list-group-flush">
+
+                                <li class="list-group-item">
+                                    Locate the raw data in the manuscript.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Organize the information into rows
+                                    and columns.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Insert a table in Microsoft Word.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Add the appropriate table number.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Add a descriptive table title.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Format the table according to APA 7.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Add a table note when necessary.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- APA EXAMPLE -->
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5 mb-3">
+                                APA 7 Table Example
+                            </h4>
+
+                            <div class="table-responsive">
+
+                                <table class="table apa-table">
+
+                                    <caption class="caption-top">
+
+                                        <strong>Table 1</strong>
+                                        <br>
+
+                                        <em>
+                                            Respondents' Assessment
+                                            of the Research Variables
+                                        </em>
+
+                                    </caption>
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Variable</th>
+                                            <th>M</th>
+                                            <th>SD</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Variable A</td>
+                                            <td>4.25</td>
+                                            <td>0.52</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Variable B</td>
+                                            <td>4.11</td>
+                                            <td>0.61</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Variable C</td>
+                                            <td>4.36</td>
+                                            <td>0.48</td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <small>
+                                <strong>Note.</strong>
+                                M = mean; SD = standard deviation.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="alert alert-warning">
+
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+
+                        <strong>Remember:</strong>
+                        Do not simply copy the raw data into a table.
+                        Organize it logically and apply the required
+                        APA 7 structure.
+
+                    </div>
+
+
+
+                    <NavigationButtons previous="2" next="4"></NavigationButtons>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 TASK 4
+            ================================================= -->
+
+                <section id="task4" class="task-page">
+
+                    <TaskHeader number="04" title="Headers" subtitle="Insert and format the manuscript header.">
+                    </TaskHeader>
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Task Objective
+                            </h4>
+
+                            <p class="text-secondary">
+                                Insert the appropriate header throughout
+                                the research manuscript and make sure
+                                it appears consistently.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Instructions
+                            </h4>
+
+                            <ol class="list-group list-group-numbered list-group-flush">
+
+                                <li class="list-group-item">
+                                    Go to the <strong>Insert</strong> tab.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Select <strong>Header</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Choose an appropriate header layout.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Enter the required manuscript information.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Check the header on multiple pages.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Make sure the header does not interfere
+                                    with the body text.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="word-path rounded p-3 mb-3">
+
+                        Insert → Header → Choose Header
+
+                    </div>
+
+
+
+                    <div class="alert alert-info">
+
+                        <i class="bi bi-lightbulb me-2"></i>
+
+                        <strong>Tip:</strong>
+                        Double-click the top portion of a page to
+                        quickly open the Header and Footer area.
+
+                    </div>
+
+
+
+                    <NavigationButtons previous="3" next="5"></NavigationButtons>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 TASK 5
+            ================================================= -->
+
+                <section id="task5" class="task-page">
+
+                    <TaskHeader number="05" title="Page Numbering"
+                        subtitle="Use Roman numerals for preliminary pages and Arabic numbers for Chapters 1–3.">
+                    </TaskHeader>
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Task Objective
+                            </h4>
+
+                            <p class="text-secondary">
+                                Create two different page-numbering systems
+                                within the same Microsoft Word document.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- NUMBERING TABLE -->
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Required Numbering Format
+                            </h4>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-hover">
+
+                                    <thead class="table-light">
+
+                                        <tr>
+                                            <th>Document Section</th>
+                                            <th>Page Number Format</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Preliminary Pages</td>
+                                            <td>
+                                                <strong>i, ii, iii, iv...</strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Chapter 1</td>
+                                            <td>
+                                                <strong>1</strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Chapter 2</td>
+                                            <td>
+                                                Continue Arabic numbering
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Chapter 3</td>
+                                            <td>
+                                                Continue Arabic numbering
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- STEPS -->
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Step-by-Step Instructions
+                            </h4>
+
+                            <ol class="list-group list-group-numbered list-group-flush">
+
+                                <li class="list-group-item">
+                                    Place your cursor at the end of
+                                    the preliminary pages.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Go to <strong>Layout → Breaks</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Insert a
+                                    <strong>Next Page Section Break</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Go to the first page of Chapter 1.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Open the Header or Footer.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Turn off
+                                    <strong>Link to Previous</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Insert page numbers in the preliminary section.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Format preliminary pages as
+                                    <strong>Roman numerals</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Insert page numbers in the Chapter 1 section.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Format Chapter 1 as
+                                    <strong>Arabic number 1</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Continue Arabic numbering through Chapters 2–3.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="word-path rounded p-3 mb-2">
+
+                        Layout → Breaks → Section Breaks → Next Page
+
+                    </div>
+
+                    <div class="word-path rounded p-3 mb-2">
+
+                        Header & Footer → Link to Previous → OFF
+
+                    </div>
+
+                    <div class="word-path rounded p-3 mb-3">
+
+                        Page Number → Format Page Numbers →
+                        Number Format
+
+                    </div>
+
+
+
+                    <div class="alert alert-danger">
+
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+
+                        <strong>Important:</strong>
+                        Do not use a regular page break when you need
+                        different numbering formats. Use a
+                        <strong>Section Break – Next Page</strong>.
+
+                    </div>
+
+
+
+                    <NavigationButtons previous="4" next="6"></NavigationButtons>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 TASK 6
+            ================================================= -->
+
+                <section id="task6" class="task-page">
+
+                    <TaskHeader number="06" title="Images & Text Wrapping"
+                        subtitle="Insert and position an image in the manuscript."></TaskHeader>
+
+
+                    <!-- DOWNLOAD IMAGE -->
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-md">
+
+                                    <h4 class="h5">
+                                        <i class="bi bi-image text-primary me-2"></i>
+                                        Required Research Image
+                                    </h4>
+
+                                    <p class="text-secondary mb-0">
+                                        Download the image and insert it
+                                        into the research manuscript.
+                                    </p>
+
+                                </div>
+
+                                <div class="col-md-auto mt-3 mt-md-0">
+
+                                    <a href="research-image.jpg" download class="btn btn-primary">
+
+                                        <i class="bi bi-download me-1"></i>
+
+                                        Download Image
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Instructions
+                            </h4>
+
+                            <ol class="list-group list-group-numbered list-group-flush">
+
+                                <li class="list-group-item">
+                                    Download the provided image.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Open the research manuscript.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Go to
+                                    <strong>Insert → Pictures</strong>.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Insert the downloaded image.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Resize the image while maintaining
+                                    its proportions.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Position the image appropriately.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Select the appropriate text-wrapping option.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Text Wrapping Options
+                            </h4>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-hover">
+
+                                    <thead class="table-light">
+
+                                        <tr>
+                                            <th>Option</th>
+                                            <th>Description</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Square</td>
+                                            <td>
+                                                Text flows around the
+                                                rectangular boundary.
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Tight</td>
+                                            <td>
+                                                Text follows the shape
+                                                of the object more closely.
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>In Front of Text</td>
+                                            <td>
+                                                The image appears above
+                                                the text.
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="word-path rounded p-3 mb-2">
+
+                        Insert → Pictures → This Device
+
+                    </div>
+
+                    <div class="word-path rounded p-3 mb-3">
+
+                        Picture Format → Wrap Text →
+                        Choose the required option
+
+                    </div>
+
+
+
+                    <div class="alert alert-info">
+
+                        <i class="bi bi-lightbulb me-2"></i>
+
+                        <strong>Tip:</strong>
+                        Resize using the corner handles to maintain
+                        the image's proportions.
+
+                    </div>
+
+
+
+                    <NavigationButtons previous="5" next="7"></NavigationButtons>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 TASK 7
+            ================================================= -->
+
+                <section id="task7" class="task-page">
+
+                    <TaskHeader number="07" title="Navigation Pane"
+                        subtitle="Organize the manuscript using heading styles."></TaskHeader>
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Task Objective
+                            </h4>
+
+                            <p class="text-secondary">
+                                Apply Heading 1, Heading 2, and Heading 3
+                                styles so that the research manuscript's
+                                structure appears correctly in the
+                                Navigation Pane.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Instructions
+                            </h4>
+
+                            <ol class="list-group list-group-numbered list-group-flush">
+
+                                <li class="list-group-item">
+                                    Locate the major sections of the manuscript.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Apply <strong>Heading 1</strong>
+                                    to major headings.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Apply <strong>Heading 2</strong>
+                                    to secondary headings.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Apply <strong>Heading 3</strong>
+                                    to lower-level headings.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Open the Navigation Pane.
+                                </li>
+
+                                <li class="list-group-item">
+                                    Check that headings appear in
+                                    the correct hierarchy.
+                                </li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="word-path rounded p-3 mb-2">
+
+                        Home → Styles →
+                        Heading 1 / Heading 2 / Heading 3
+
+                    </div>
+
+                    <div class="word-path rounded p-3 mb-3">
+
+                        View → Navigation Pane
+
+                    </div>
+
+
+
+                    <!-- HEADING STRUCTURE -->
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5">
+                                Recommended Heading Structure
+                            </h4>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-hover">
+
+                                    <thead class="table-light">
+
+                                        <tr>
+                                            <th>Style</th>
+                                            <th>Example</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>
+                                                <strong>Heading 1</strong>
+                                            </td>
+
+                                            <td>
+                                                CHAPTER 1 –
+                                                THE PROBLEM AND ITS BACKGROUND
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <strong>Heading 2</strong>
+                                            </td>
+
+                                            <td>
+                                                Introduction
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <strong>Heading 2</strong>
+                                            </td>
+
+                                            <td>
+                                                Background of the Study
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <strong>Heading 3</strong>
+                                            </td>
+
+                                            <td>
+                                                Research Context
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="alert alert-info">
+
+                        <i class="bi bi-lightbulb me-2"></i>
+
+                        <strong>Tip:</strong>
+                        If a heading does not appear in the Navigation
+                        Pane, check whether an actual Word Heading Style
+                        was applied. Making text bold does not create
+                        a navigation heading.
+
+                    </div>
+
+
+
+                    <NavigationButtons previous="6" next="checklist" finish="true"></NavigationButtons>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 FINAL CHECKLIST
+            ================================================= -->
+
+                <section id="checklist" class="task-page">
+
+
+
+                    <!-- DOWNLOAD ACTIVITY FILES -->
+
+                    <div class="card border-0 shadow-sm mt-3">
+
+                        <div class="card-body p-4">
+
+                            <h4 class="h5 mb-2">
+                                <i class="bi bi-folder2-open text-primary me-2"></i>
+                                Activity Files
+                            </h4>
+
+                            <p class="text-secondary mb-4">
+                                Download the files below and use them to complete
+                                the activities in Microsoft Word.
+                            </p>
+
+
+                            <!-- FILE 1: MANUSCRIPT -->
+
+                            <div class="border rounded-3 p-3 mb-3">
+
+                                <div class="row align-items-center">
+
+                                    <div class="col-md">
+
+                                        <div class="d-flex align-items-center gap-3">
+
+                                            <div class="bg-primary-subtle text-primary
+                                    rounded-3 p-3 fs-4">
+
+                                                <i class="bi bi-file-earmark-word"></i>
+
+                                            </div>
+
+                                            <div>
+
+                                                <h6 class="mb-1">
+                                                    Research Manuscript
+                                                </h6>
+
+                                                <small class="text-secondary">
+                                                    Microsoft Word Document (.docx)
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-auto mt-3 mt-md-0">
+
+                                        <a href="research-manuscript.docx" download class="btn btn-primary">
+
+                                            <i class="bi bi-download me-1"></i>
+
+                                            Download Manuscript
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+                            <!-- INSTRUCTION -->
+
+                            <div class="alert alert-info mt-4 mb-0">
+
+                                <i class="bi bi-info-circle me-2"></i>
+
+                                <strong>Instructions:</strong>
+                                Download the files you need before starting the activity.
+                                Open the downloaded files using the appropriate application
+                                such as Microsoft Word or Microsoft Excel.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FILE 2: IMAGE 1 -->
+                    <div class="border rounded-3 p-3 mb-3">
+                        <div class="row align-items-center">
+                            <div class="col-md">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-success-subtle text-success rounded-3 p-3 fs-4"> <i
+                                            class="bi bi-image"></i> </div>
+                                    <div>
+                                        <h6 class="mb-1"> Research Image </h6> <small class="text-secondary"> Image file
+                                            (.jpg) </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-auto mt-3 mt-md-0"> <a href="./images/CSTC.png" download
+                                    class="btn btn-success"> <i class="bi bi-download me-1"></i> Download Image </a>
+                            </div>
+                        </div>
+
+                    </div> <!-- FILE 3: IMAGE 2 -->
+                    <div class="border rounded-3 p-3 mb-3">
+                        <div class="row align-items-center">
+                            <div class="col-md">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-success-subtle text-success rounded-3 p-3 fs-4"> <i
+                                            class="bi bi-image"></i> </div>
+                                    <div>
+                                        <h6 class="mb-1"> Supporting Image </h6> <small class="text-secondary"> Image
+                                            file (.png) </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-auto mt-3 mt-md-0"> <a href="./images/images.jpg" download
+                                    class="btn btn-success"> <i class="bi bi-download me-1"></i> Download Image </a>
+                            </div>
+                        </div>
+                    </div>
+                    </div> <!-- FILE 3: IMAGE 3 -->
+                    <div class="border rounded-3 p-3 mb-3">
+                        <div class="row align-items-center">
+                            <div class="col-md">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-success-subtle text-success rounded-3 p-3 fs-4"> <i
+                                            class="bi bi-image"></i> </div>
+                                    <div>
+                                        <h6 class="mb-1"> Supporting Image </h6> <small class="text-secondary"> Image
+                                            file (.png) </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-auto mt-3 mt-md-0"> <a href="./images/images2.png" download
+                                    class="btn btn-success"> <i class="bi bi-download me-1"></i> Download Image </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="d-flex justify-content-between mt-4">
+
+                        <button class="btn btn-outline-secondary" onclick="showPageById('task7')">
+
+                            <i class="bi bi-arrow-left me-1"></i>
+
+                            Back to Task 7
+
+                        </button>
+
+
+                        <button class="btn btn-success" onclick="finishActivity()">
+
+                            <i class="bi bi-check-lg me-1"></i>
+
+                            Complete Activity
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+    <script>
+
+        /* -----------------------------------------
+           VARIABLES
+        ----------------------------------------- */
+
+        let completedTasks = [];
+
+
+
+        /* -----------------------------------------
+           SHOW PAGE
+        ----------------------------------------- */
+
+        function showPage(pageId, clickedItem = null) {
+
+            // Hide all pages
+
+            document
+                .querySelectorAll(".task-page")
+                .forEach(page => {
+
+                    page.classList.remove("active");
+
+                });
+
+
+            // Show selected page
+
+            const page =
+                document.getElementById(pageId);
+
+            if (page) {
+
+                page.classList.add("active");
+
+            }
+
+
+            // Remove active state
+
+            document
+                .querySelectorAll(".nav-task")
+                .forEach(item => {
+
+                    item.classList.remove("active");
+
+                });
+
+
+            // Find corresponding navigation item
+
+            document
+                .querySelectorAll(".nav-task")
+                .forEach(item => {
+
+                    const text =
+                        item.textContent.toLowerCase();
+
+                    if (
+
+                        (pageId === "overview" &&
+                            text.includes("activity overview"))
+
+                        ||
+
+                        (pageId === "task1" &&
+                            text.includes("page setup"))
+
+                        ||
+
+                        (pageId === "task2" &&
+                            text.includes("paragraph"))
+
+                        ||
+
+                        (pageId === "task3" &&
+                            text.includes("tables"))
+
+                        ||
+
+                        (pageId === "task4" &&
+                            text.includes("headers"))
+
+                        ||
+
+                        (pageId === "task5" &&
+                            text.includes("page numbering"))
+
+                        ||
+
+                        (pageId === "task6" &&
+                            text.includes("images"))
+
+                        ||
+
+                        (pageId === "task7" &&
+                            text.includes("navigation pane"))
+
+                        ||
+
+                        (pageId === "checklist" &&
+                            text.includes("final checklist"))
+
+                    ) {
+
+                        item.classList.add("active");
+
+                    }
+
+                });
+
+
+            // Close mobile sidebar
+
+            document
+                .getElementById("sidebar")
+                .classList.remove("show");
+
+
+            // Scroll to top
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+
+        /* -----------------------------------------
+           SIMPLE PAGE NAVIGATION
+        ----------------------------------------- */
+
+        function showPageById(pageId) {
+
+            showPage(pageId);
+
+        }
+
+
+
+        /* -----------------------------------------
+           COMPLETE TASK
+        ----------------------------------------- */
+
+        function completeTask(taskNumber) {
+
+            if (
+                !completedTasks.includes(taskNumber)
+            ) {
+
+                completedTasks.push(taskNumber);
+
+            }
+
+
+            updateProgress();
+
+
+            // Find navigation task
+
+            const navItems =
+                document.querySelectorAll(".nav-task");
+
+
+            navItems.forEach(item => {
+
+                if (
+                    item.textContent
+                        .trim()
+                        .startsWith(taskNumber.toString())
+                ) {
+
+                    item.classList.add("completed");
+
+                    const number =
+                        item.querySelector(".task-number");
+
+                    if (number) {
+
+                        number.innerHTML =
+                            '<i class="bi bi-check-lg"></i>';
+
+                        number.classList.remove("border");
+
+                        number.classList.add(
+                            "bg-success",
+                            "text-white"
+                        );
+
+                    }
+
+                }
+
+            });
+
+
+            // Go to next task
+
+            if (taskNumber < 7) {
+
+                showPageById(
+                    "task" + (taskNumber + 1)
+                );
+
+            } else {
+
+                showPageById("checklist");
+
+            }
+
+        }
+
+
+
+        /* -----------------------------------------
+           PROGRESS
+        ----------------------------------------- */
+
+        function updateProgress() {
+
+            const count =
+                completedTasks.length;
+
+            const percentage =
+                (count / 7) * 100;
+
+
+            document
+                .getElementById("progressFill")
+                .style.width =
+                percentage + "%";
+
+
+            document
+                .getElementById("progressText")
+                .innerText =
+                count + " / 7";
+
+        }
+
+
+
+        /* -----------------------------------------
+           FINISH ACTIVITY
+        ----------------------------------------- */
+
+        function finishActivity() {
+
+            const checkboxes =
+                document.querySelectorAll(
+                    ".checklist"
+                );
+
+
+            let checked = 0;
+
+
+            checkboxes.forEach(box => {
+
+                if (box.checked) {
+
+                    checked++;
+
+                }
+
+            });
+
+
+            if (
+                checked === checkboxes.length
+            ) {
+
+                alert(
+                    "🎉 Congratulations!\n\n" +
+                    "You have completed the " +
+                    "Research Manuscript Formatting Laboratory.\n\n" +
+                    "Your manuscript is ready for final submission."
+                );
+
+            } else {
+
+                alert(
+                    "Please review the Final Checklist.\n\n" +
+                    checked +
+                    " out of " +
+                    checkboxes.length +
+                    " items have been checked."
+                );
+
+            }
+
+        }
+
+
+
+        /* -----------------------------------------
+           MOBILE SIDEBAR
+        ----------------------------------------- */
+
+        function toggleSidebar() {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("show");
+
+        }
+
+
+
+        /* -----------------------------------------
+           CHECKLIST LOCAL STORAGE
+        ----------------------------------------- */
+
+        document
+            .querySelectorAll(".checklist")
+            .forEach((checkbox, index) => {
+
+
+                // Load saved state
+
+                const saved =
+                    localStorage.getItem(
+                        "researchChecklist_" + index
+                    );
+
+
+                if (saved === "true") {
+
+                    checkbox.checked = true;
+
+                }
+
+
+                // Save changes
+
+                checkbox.addEventListener(
+                    "change",
+                    () => {
+
+                        localStorage.setItem(
+                            "researchChecklist_" + index,
+                            checkbox.checked
+                        );
+
+                    }
+                );
+
+            });
+
+
+
+        /* -----------------------------------------
+           CUSTOM NAVIGATION BUTTONS
+        ----------------------------------------- */
+
+        function NavigationButtons() {
+
+            return "";
+
+        }
+
+    </script>
+
+
+
+    <!-- =====================================================
+     NAVIGATION BUTTON OVERRIDE
+===================================================== -->
+
+    <script>
+
+        /*
+            Since the HTML above uses simple attributes
+            for navigation, this helper handles the
+            previous/next buttons.
+        */
+
+        function goTask(number) {
+
+            showPageById("task" + number);
+
+        }
+
+    </script>
+
+
+
+    <!-- =====================================================
+     REPLACE CUSTOM COMPONENT PLACEHOLDERS
+===================================================== -->
+
+    <script>
+
+        /*
+            The <TaskHeader> and <NavigationButtons> tags above
+            are intentionally converted below so the page remains
+            completely dependency-free.
+        */
+
+        document.querySelectorAll("TaskHeader").forEach(el => {
+
+            const number =
+                el.getAttribute("number");
+
+            const title =
+                el.getAttribute("title");
+
+            const subtitle =
+                el.getAttribute("subtitle");
+
+
+            el.outerHTML = `
+
+            <div class="d-flex align-items-center gap-3 mb-4">
+
+                <span class="badge text-bg-primary fs-5 p-3">
+                    ${number}
+                </span>
+
+                <div>
+
+                    <h1 class="h3 mb-1">
+                        ${title}
+                    </h1>
+
+                    <p class="text-secondary mb-0">
+                        ${subtitle}
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        });
+
+
+
+        document.querySelectorAll("NavigationButtons").forEach(el => {
+
+            const previous =
+                el.getAttribute("previous");
+
+            const next =
+                el.getAttribute("next");
+
+            const finish =
+                el.getAttribute("finish");
+
+
+            let previousPage =
+                previous === "overview"
+                    ? "overview"
+                    : "task" + previous;
+
+
+            let nextPage =
+                next === "checklist"
+                    ? "checklist"
+                    : "task" + next;
+
+
+            el.outerHTML = `
+
+            <div class="d-flex justify-content-between mt-4">
+
+                <button
+                    class="btn btn-outline-secondary"
+                    onclick="showPageById('${previousPage}')"
+                >
+
+                    <i class="bi bi-arrow-left me-1"></i>
+
+                    Previous
+
+                </button>
+
+
+                <button
+                    class="btn ${finish ? "btn-success" : "btn-primary"}"
+                    onclick="${finish
+                    ? "completeTask(7)"
+                    : "completeTask(" + previous + ")"
+                }"
+                >
+
+                    ${finish
+                    ? "Finish Task 7"
+                    : "Complete Task " + previous
+                }
+
+                    <i class="bi bi-arrow-right ms-1"></i>
+
+                </button>
+
+            </div>
+
+        `;
+
+        });
+
+    </script>
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
+```
